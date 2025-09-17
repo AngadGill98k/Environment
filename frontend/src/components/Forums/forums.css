@@ -1,0 +1,11 @@
+.search{
+    background-color: yellow;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 5vh;
+}
+
+.papers{
+    background-color: brown;
+}

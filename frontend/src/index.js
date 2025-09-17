@@ -7,7 +7,10 @@ import {Provider} from 'react-redux'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import { store } from './redux/store';
 import Login from './components/login/Login';
-
+import Admin from './components/Admin/Admin';
+import Forums from './components/Forums/Forums';
+import Content from './components/Content/Content';
+import User from './components/User/User';
 const router=createBrowserRouter([
   {
     path:"/",
@@ -16,6 +19,22 @@ const router=createBrowserRouter([
   {
     path:"/home",
     element:<App/>
+  },
+  {
+    path:"/admin",
+    element:<Admin/>
+  },
+  {
+    path:"/forums",
+    element:<Forums/>
+  },
+  {
+    path:"/content",
+    element:<Content/>
+  },
+  {
+    path:"/user",
+    element:<User/>
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

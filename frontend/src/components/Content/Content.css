@@ -1,0 +1,20 @@
+.content_con {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+    height: calc(100vh - 5vh);
+    background-color: yellowgreen;
+}
+
+.content_list {
+    box-sizing: border-box;
+    background-color: turquoise;
+}
+
+.right {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
