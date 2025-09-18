@@ -8,8 +8,9 @@ const Admin = () => {
   let naviagte=useNavigate()
 
 
-  let [toggle,settoggle]=useState(false)
+  let [toggle,settoggle]=useState("verify")
   let [paper,setpaper]=useState([]);
+  let [bookmarks,setbookmark]=useState([]);
   useEffect(() => {
     console.log(token);
     fetch('http://localhost:3001/get_papers_to_verify', {
@@ -41,6 +42,9 @@ const Admin = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      if(data.msg){
+        setbookmark(data.bookmarks)
+      }
     })
     .catch(err => console.error(err));
 
@@ -89,27 +93,56 @@ const Admin = () => {
     <div className="nav_con"><Navbar/></div>
     
     <div>
-        <button onClick={()=>{settoggle(false)}}>Verify Papers</button>
-        <button onClick={()=>{settoggle(true)}}>Manage Moderaters</button>
-    </div>
+  <button onClick={() => settoggle("verify")}>Verify Papers</button>
+  <button onClick={() => settoggle("moderators")}>Manage Moderators</button>
+  <button onClick={() => settoggle("bookmark")}>Manage Bookmarks</button>
+</div>
 
-    {toggle ? <><input ref={nameref} type="text" placeholder='username' />
-    <input ref={mailref} type="text" placeholder='email' />
-    <input ref={passref} type="text" placeholder='password' />
+{/* Verify Papers Section */}
+{toggle === "verify" && (
+  <ul>
+    {paper &&
+      paper.map((p, index) => (
+        <li
+          key={index}
+          onClick={() => {console.log(p);
+            naviagte(`/verify`, { state: { paper: p } });
+          }}
+        >
+          <h3>{p.title}</h3>
+          <p>{p.description}</p>
+          <span>{p.verified ? "✅ Verified" : "❌ Not Verified"}</span>
+        </li>
+      ))}
+  </ul>
+)}
+
+{/* Moderators Section */}
+{toggle === "moderators" && (
+  <>
+    <input ref={nameref} type="text" placeholder="username" />
+    <input ref={mailref} type="text" placeholder="email" />
+    <input ref={passref} type="text" placeholder="password" />
     <button onClick={handleMod}>Add mod</button>
-    </> :<ul>
-      {paper && paper.map((paper,index)=>{
-        return(
-          <li onClick={()=>{naviagte(`/verify`,{ state: { paper } })}} key={index}>
-              <h3>{paper.title}</h3>
-              <p>{paper.description}</p>
-              <span>{paper.verified}</span>
+  </>
+)}
 
-          </li>
-        )
-      })}
-    </ul> 
-    }
+{/* Bookmarks Section */}
+{toggle === "bookmark" && (
+  <ul>
+    {bookmarks &&
+      bookmarks.map((bookmark, index) => (
+        <li  onClick={() => {
+            naviagte(`/verify`, { state: { bookmark: bookmark } });
+          }} key={index}>
+          <h3>{bookmark.title}</h3>
+          <p>{bookmark.description}</p>
+          <span>{bookmark.verified ? "✅ Verified" : "❌ Not Verified"}</span>
+        </li>
+      ))}
+  </ul>
+)}
+
     
 
 

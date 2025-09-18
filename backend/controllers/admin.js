@@ -30,7 +30,7 @@ export const get_moderators=async(req,res,next)=>{
 export const get_papers_to_verify=async(req,res,next)=>{
     try{
         console.log("req cam ine (controller.admin.get_papers_to_verify)");
-        let papers=await Paper.find()
+        let papers=await Request.find()
         res.json({msg:true,papers})
     }catch(e){
         res.json({msg:false,error:e.message,message:"error in getting papers to verify"})
@@ -41,12 +41,13 @@ export const verify_paper=async(req,res,next)=>{
     try{
         console.log("req cam ine (controller.admin.verify_paper)");
         let {paperid,requestid}=req.body
+        console.log(paperid, requestid);
         let paper=await Paper.findById(paperid)
         if(!paper) return res.json({msg:false,message:"paper not found"})
         paper.verified=true
         await paper.save()
-        let request=await Request.deleteOne({_id:requestid})
-        request.save()
+        await Request.deleteOne({_id:requestid})
+        
         res.json({msg:true,paper})
     }catch(e){
         res.json({msg:false,error:e.message,message:"error in verifying paper"})
@@ -73,7 +74,7 @@ export const bookmark_paper=async(req,res,next)=>{
     try{
         console.log("req cam ine (controller.admin.bookmark_paper)");
         let {paperid}=req.body
-        let paper=await Paper.findById(paperid)
+        let paper=await Request.findById(paperid)
         if(!paper) return res.json({msg:false,message:"paper not found"})
         let userid=req.user
         let user=await User.findById(userid)

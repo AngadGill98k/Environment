@@ -63,12 +63,12 @@ export const comment_forum = async (req, res, next) => {
         let forumid = req.body.forumid
         let forums = await Paper.findById(forumid);
         if (!forums) return res.json({ msg: false, message: "forum not found" })
-        let name = req.body.name
-        let reply = req.body.comment
-        let comment = { name, reply }
-        forums.comments.push(comment)
+        let name = await User.findById(req.user).select("name -_id")
+        let reply = req.body.reply
+        let comment = { name:name.name, reply }
+        forums.replies.push(comment)
         await forums.save()
-        res.json({ msg: true, forums })
+        res.json({ msg: true, comment })
     } catch (e) {
         res.json({ msg: false, error: e.message, message: "error in gettting forums papers" })
     }

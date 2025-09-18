@@ -9,7 +9,8 @@ const paperschema=new mongoose.Schema({
     organization:String,
     upvote:Number,
     downvote:Number,
-    replies:[{name:String,reply:String}]
+    replies:[{name:String,reply:String}],
+    file:Object
 })
 
 const Paper=mongoose.model('Paper',paperschema)

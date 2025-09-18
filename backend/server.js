@@ -58,8 +58,9 @@ app.use('/uploads', express.static('uploads'));
 
 
 
-
-
+//Common
+import {read_paper} from "./controllers/common.js"
+app.post('/read_paper',passport.authenticate('jwt', { session: false }),read_paper)
 
 
 import {refresh_access_token,signin,signup,logout} from "./controllers/login.js"

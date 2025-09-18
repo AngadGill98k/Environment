@@ -11,16 +11,7 @@ export const add_paper=async(req,res,next)=>{
         let file=req.file
         if(!userid) return res.json({msg:false,message:"user not found"})
         let user=await User.findById(userid)
-        let request=new Request({
-            name:user.name,
-            mail:user.mail,
-            organization:user.organization,
-            research_paper:file,
-            userid:user._id,
-            name,
-            description,
-        })
-        await request.save()
+        
 
         let paper=new Paper({
             title:name,
@@ -29,9 +20,20 @@ export const add_paper=async(req,res,next)=>{
             organization:user.organization,
             verified:false,
             verified_by:"",upvote:0,downvote:0,
-            replies:[]
+            replies:[],file
         })
         await paper.save()
+        let request=new Request({
+            name:user.name,
+            mail:user.mail,
+            organization:user.organization,
+            research_paper:paper._id,
+            userid:user._id,
+            name,
+            description,
+        })
+        await request.save()
+        
         user.research_paper.push(paper._id)
         await user.save()
 
