@@ -47,9 +47,21 @@ function App() {
             <Navbar/>
       </div>
 
-      <button onClick={()=>naviagter("/content")}>content</button>
-   
+      <div className='header'>
+        <p style={{color:"#5a5a5aff",margin:"0px",padding:"0px",width:"50%",textAlign:"justify",fontWeight:"bolder",fontSize:"25px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus 
+          id ipsam sapiente ex quasi et nostrum suscipit 
+          culpa exercitationem eos? Eius itaque 
+          deserunt officiis, magnam 
+          doloremque earum. Neque, animi nam?  <button onClick={()=>naviagter("/content")}> Learn More</button></p>
+          
+      </div>
       
+   
+      <div className='about_con'>
+        <div>
+          <h2>About Us</h2>
+        </div>
+      </div>
       
     </>
   );

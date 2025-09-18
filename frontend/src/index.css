@@ -1,6 +1,7 @@
 body,html{
   margin: 0px;
-  padding: 0px
+  padding: 0px;
+  background-color: #bcf2ac9c
 }
 #root{
   min-height: 100vh;

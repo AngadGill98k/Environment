@@ -72,7 +72,38 @@ app.post('/signup', signup);
 app.post('/logout', logout);
 
 //use this is proected routes passport.authenticate('jwt', { session: false }),
+import {add_paper,get_user} from "./controllers/user.js"
+app.post('/add_paper',passport.authenticate('jwt', { session: false }),upload.single('file'),add_paper)
 
+app.get('/get_user',passport.authenticate('jwt', { session: false }),get_user)
+
+
+import {add_moderator,get_papers_to_verify,verify_paper,reject_paper, bookmark_paper,get_bookmarks,get_moderators} from "./controllers/admin.js"
+app.get('/get_moderators',passport.authenticate('jwt', { session: false }),get_moderators)
+
+app.post('/add_moderator',passport.authenticate('jwt', { session: false }),add_moderator)
+
+app.get('/get_papers_to_verify',passport.authenticate('jwt', { session: false }),get_papers_to_verify)
+
+app.post('/verify_paper',passport.authenticate('jwt', { session: false }),verify_paper)
+
+app.post('/reject_paper',passport.authenticate('jwt', { session: false }),reject_paper)
+
+app.post('/bookmark_paper',passport.authenticate('jwt', { session: false }),bookmark_paper)
+
+app.get('/get_bookmarks',passport.authenticate('jwt', { session: false }),get_bookmarks)
+
+
+import {get_forums,search_for_forum_id,upvote_forum,downvote_forum,comment_forum} from "./controllers/forum.js"
+app.get('/get_forums',get_forums)
+
+app.get('/search_for_forum_id',search_for_forum_id)
+
+app.post('/upvote_forum',passport.authenticate('jwt', { session: false }),upvote_forum)
+
+app.post('/downvote_forum',passport.authenticate('jwt', { session: false }),downvote_forum)
+
+app.post('/comment_forum',passport.authenticate('jwt', { session: false }),comment_forum)
 server.listen(PORT,()=>{
     console.log("server started");
 })

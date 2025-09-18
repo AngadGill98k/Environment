@@ -1,10 +1,27 @@
 .nav_con{
   height: 5vh;
-  background-color: aqua;
+  background-color: #F5F6BF;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 10px;
   align-items: center;
+}
+.header{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: calc(40vh - 5vh);
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px;
+  background-image: url("../public/Gemini_Generated_Image_3f1w8d3f1w8d3f1w.png");
+  background-color: #f9fad1;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+.about_con{
+  background-color: antiquewhite;
+  height: 40vh;
 }

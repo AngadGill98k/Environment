@@ -1,4 +1,4 @@
-import mongoose from "../db";
+import mongoose from "../db.js";
 
 const paperschema=new mongoose.Schema({
     title:String,
@@ -6,7 +6,10 @@ const paperschema=new mongoose.Schema({
     refrence_links:[String],
     verified:Boolean,
     verified_by:String,
-    organization:String
+    organization:String,
+    upvote:Number,
+    downvote:Number,
+    replies:[{name:String,reply:String}]
 })
 
 const Paper=mongoose.model('Paper',paperschema)

@@ -1,9 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { use, useEffect, useRef, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import "./forums.css"
+import { useSelector } from 'react-redux';
+import Replies from './Replies';
 const Forums = () => {
+  let token = useSelector((state) => state.token);
   useEffect(() => {
-
+    fetch('http://localhost:3001/get_forums', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if (data.msg) {
+        setpapers(data.forums);
+      }
+    })
+    .catch(err => console.error(err));
 
 
   }, [])
@@ -32,6 +50,9 @@ const Forums = () => {
 
 
   let [papers, setpapers] = useState([]);
+
+
+  let [showreply,setreply]=useState("")
   return (
     <>
       <div className='nav_con'>
@@ -53,6 +74,7 @@ const Forums = () => {
         <ul>
           {papers && papers.map((paper, index) => {
             return (
+              <>
               <li key={index}>
                 <span>{paper.title} paper Titile</span>
                 <span>{paper.description} paper Description</span>
@@ -66,6 +88,13 @@ const Forums = () => {
 
                 <span>{paper.user}click user to see all teh papers</span>
               </li>
+              <button onClick={()=>{setreply(paper)}}>View  reply</button>
+              {showreply && showreply._id===paper._id && (
+                <>
+                <Replies paper={paper}/>
+                </>
+              )}
+              </>
             )
           })}
         </ul>

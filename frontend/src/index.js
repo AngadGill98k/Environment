@@ -11,6 +11,7 @@ import Admin from './components/Admin/Admin';
 import Forums from './components/Forums/Forums';
 import Content from './components/Content/Content';
 import User from './components/User/User';
+import Verify from './components/Admin/Verify';
 const router=createBrowserRouter([
   {
     path:"/",
@@ -35,6 +36,10 @@ const router=createBrowserRouter([
   {
     path:"/user",
     element:<User/>
+  },
+  {
+    path:"/verify",
+    element:<Verify/>
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));

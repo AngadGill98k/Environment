@@ -21,10 +21,17 @@ const localstrat=new LocalStrategy({
 
 passport.use(localstrat);
 
-
+const cookie_token = (req) => {
+  const header_token = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
+  if (header_token) return header_token;
+  if (req && req.cookies && req.cookies.token) {
+    return req.cookies.token;
+  }
+  return null;
+};
 
 const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: cookie_token,
   secretOrKey: SECRET_KEY,
 };
 const Jwtstart=new JwtStrategy(opts, async(jwt_payload, done) => {
