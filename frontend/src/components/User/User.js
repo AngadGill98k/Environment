@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { useSelector } from 'react-redux'
 const User = () => {
@@ -27,7 +27,7 @@ const User = () => {
     .catch(err => console.error(err));
   }
 
-
+  let [user,setuser]=useState()
   useEffect(() => {
     fetch('http://localhost:3001/get_user', {
       method: 'GET',
@@ -40,10 +40,19 @@ const User = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
+      if(data.msg){
+        setuser(data.user)
+        
+      }
     })
     .catch(err => console.error(err));
   }, [])
   
+
+  
+  let handlePaper=(paper)=>{
+    
+  }
   return (
     <>
     <div className='nav_con'>
@@ -68,7 +77,16 @@ const User = () => {
     <h3>All papers</h3>
     <div>
         <ul>
-            {}
+            {user && user.research_paper.map((paper,index)=>{
+              return (
+              <li key={index} onClick={()=>{handlePaper(paper)}}>
+                  <p>{paper.title}</p>
+                  <p>{paper.description}</p>
+                  {paper.verified ? <p>verified</p> : <p>not verified</p>}
+                  {paper.verified && <p>verified by {paper.verified_by}</p>}
+              </li>)
+            
+            })}
         </ul>
     </div>
     </>

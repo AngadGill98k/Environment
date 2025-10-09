@@ -79,7 +79,7 @@ app.post('/add_paper',passport.authenticate('jwt', { session: false }),upload.si
 app.get('/get_user',passport.authenticate('jwt', { session: false }),get_user)
 
 
-import {add_moderator,get_papers_to_verify,verify_paper,reject_paper, bookmark_paper,get_bookmarks,get_moderators} from "./controllers/admin.js"
+import {add_moderator,get_papers_to_verify,verify_paper,reject_paper, bookmark_paper,get_bookmarks,get_moderators,paper_filler} from "./controllers/admin.js"
 app.get('/get_moderators',passport.authenticate('jwt', { session: false }),get_moderators)
 
 app.post('/add_moderator',passport.authenticate('jwt', { session: false }),add_moderator)
@@ -94,6 +94,7 @@ app.post('/bookmark_paper',passport.authenticate('jwt', { session: false }),book
 
 app.get('/get_bookmarks',passport.authenticate('jwt', { session: false }),get_bookmarks)
 
+app.post('/paper_filler',passport.authenticate('jwt', { session: false }),paper_filler)
 
 import {get_forums,search_for_forum_id,upvote_forum,downvote_forum,comment_forum} from "./controllers/forum.js"
 app.get('/get_forums',get_forums)

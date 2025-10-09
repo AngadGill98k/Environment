@@ -31,6 +31,7 @@ export const add_paper=async(req,res,next)=>{
             userid:user._id,
             name,
             description,
+            paperid:paper._id,
         })
         await request.save()
         

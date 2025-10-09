@@ -38,10 +38,12 @@ export const get_papers_to_verify=async(req,res,next)=>{
 }
 
 export const verify_paper=async(req,res,next)=>{
+    console.log("req cam ine (controller.admin.verify_paper)");
     try{
-        console.log("req cam ine (controller.admin.verify_paper)");
-        let {paperid,requestid}=req.body
-        console.log(paperid, requestid);
+        
+        let {requestid}=req.body
+        let paperid=req.body.paperid
+        console.log(req.body);
         let paper=await Paper.findById(paperid)
         if(!paper) return res.json({msg:false,message:"paper not found"})
         paper.verified=true
@@ -108,5 +110,20 @@ export const read_paper=async(req,res,next)=>{
         res.json({msg:true,paper})
     }catch(e){
         res.json({msg:false,error:e.message,message:"error in reading paper"})
+    }
+}
+
+
+export const paper_filler=async(req,res,next)=>{
+    try{
+        console.log("req cam ine (controller.admin.paper_filler)");
+        let paper=req.body.paper
+        
+        let research_paper=await Paper.findById(paper.research_paper)
+        if(!research_paper) return res.json({msg:false,message:"paper not found"})
+        paper.research_paper=research_paper
+        res.json({msg:true,paper})
+    }catch(e){
+        res.json({msg:false,error:e.message,message:"error in paper filler"})
     }
 }
