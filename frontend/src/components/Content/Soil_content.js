@@ -4,6 +4,7 @@ import "./Content.css"
 const Soil_content = () => {
   return (
     <>
+    <div style={{padding:"10px",boxSizing:"border-box",backgroundColor:"#f8eacfff",borderRadius:"8px"}}>
       <h2>Soil Pollution</h2>
 
       <h3>Definition</h3>
@@ -45,6 +46,7 @@ const Soil_content = () => {
         <li><b>Government:</b> Enforce soil protection laws, promote afforestation, 
             recycling programs, awareness campaigns.</li>
       </ul>
+      </div>
     </>
   )
 }

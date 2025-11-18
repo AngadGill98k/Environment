@@ -5,8 +5,9 @@
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 10px;
+  
   align-items: center;
+  width: 100vw;
 }
 .header{
   display: flex;
@@ -23,5 +24,17 @@
 }
 .about_con{
   background-color: antiquewhite;
+  display: flex ;
+  flex-direction: row;
   height: 40vh;
+}
+.AboutText{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  padding: 0 10px 0 10px;
+  text-align: justify;
+  box-sizing: border-box;
+}
+span{
+  display: block;
 }

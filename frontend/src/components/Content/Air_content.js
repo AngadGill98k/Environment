@@ -4,6 +4,7 @@ import "./Content.css"
 const Air_content = () => {
   return (
    <>
+   <div style={{padding:"10px",boxSizing:"border-box",backgroundColor:"#ffffff9d",borderRadius:"8px",height:"100%"}}>
       <h2>Air Pollution</h2>
 
       <h3>Definition</h3>
@@ -44,6 +45,7 @@ const Air_content = () => {
         <li><b>Industrial:</b> Install filters/scrubbers, shift to renewable energy, promote electric vehicles.</li>
         <li><b>Government:</b> Enforce air quality laws, afforestation drives, awareness programs.</li>
       </ul>
+      </div>
     </>
   )
 }

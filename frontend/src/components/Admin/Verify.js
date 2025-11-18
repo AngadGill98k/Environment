@@ -75,8 +75,15 @@ const Verify = () => {
     <button onClick={handleverify}>Verify</button>
 
 
-    {Paper && <iframe src={`http://localhost:3001/${Paper.research_paper.file.path}`} width="100%" height="600px" title="PDF Viewer"></iframe>}
-    </>
+{Paper && (
+  <iframe
+    src={`http://localhost:3001/${Paper.research_paper.file.path.replace(/\\/g, "/")}`}
+    width="100%"
+    height="600px"
+    title="Research Paper"
+  ></iframe>
+)}
+ </>
   )
 }
 

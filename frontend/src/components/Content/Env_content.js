@@ -3,7 +3,7 @@ import "./Content.css"
 
 const Env_content = () => {
   return (
-    <div className="content-container">
+    <div style={{padding:"10px",boxSizing:"border-box",borderRadius:"8px"}}>
       <h2>Environmental Pollution</h2>
 
       <h3>Definition</h3>

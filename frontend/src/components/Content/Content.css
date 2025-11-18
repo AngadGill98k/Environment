@@ -9,12 +9,29 @@
 
 .content_list {
     box-sizing: border-box;
-    background-color: turquoise;
+    background-color: rgb(255, 227, 191);
 }
 
 .right {
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;
+
     box-sizing: border-box;
+    background-color: antiquewhite;
+    
+
+    p,span,li,h3,h2 {
+        color: #5a5a5aff;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: justify;
+        font-weight: bolder;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+}
+
+.right::-webkit-scrollbar {
+    /* Chrome, Safari, Opera */
+    display: none;
 }

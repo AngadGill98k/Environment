@@ -4,6 +4,7 @@ import "./Content.css"
 const Water_content = () => {
   return (
     <>
+    <div style={{padding:"10px",boxSizing:"border-box",backgroundColor:"#e5fffb9d",borderRadius:"8px"}}>
       <h2>Water Pollution</h2>
 
       <h3>Definition</h3>
@@ -47,6 +48,7 @@ const Water_content = () => {
         <li><b>Government:</b> Enforce water pollution laws, river cleaning projects, promote rainwater harvesting, 
             awareness campaigns.</li>
       </ul>
+      </div>
     </>
   )
 }
