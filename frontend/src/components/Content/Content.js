@@ -5,6 +5,12 @@ import Water_content from './Water_content'
 import Soil_content from './Soil_content'
 import Env_content from './Env_content'
 import "./Content.css"
+import Air_taj from './CaseStudies/Air_taj'
+import Air_Bhopal from './CaseStudies/Air_Bhopal'
+import Water_Punjab from './CaseStudies/Water_Punjab'
+import Water_river from './CaseStudies/Water_river'
+import Soil_coal_SouthAfirca from './CaseStudies/Soil_coal_SouthAfirca'
+import Soil_kerala from './CaseStudies/Soil_kerala'
 const Content = () => {
   let topics = [
     { topic: "Environmental Pollution", content: <Env_content /> },
@@ -15,7 +21,16 @@ const Content = () => {
         { sub_topic: "Soil Pollution", content: <Soil_content /> }
       ]
     },
-    { topic: "Case Studies", subs: [] }
+    { topic: "Case Studies", subs: [
+      { sub_topic:"Taj Mahal Discoloration",content:<Air_taj />},
+      {sub_topic:"Bhopal Air Pollution",content:<Air_Bhopal/>},
+      {sub_topic:"Ganga River Pollution",content:<Water_Punjab/>},
+      {sub_topic:"Yamuna River Pollution",content:<Water_river/>},
+      {sub_topic:"Punjab Agricultural Fields",content:<Soil_coal_SouthAfirca/>},
+      {sub_topic:"E-Waste Dumps in Bengaluru",content:<Soil_kerala/>},
+      
+
+    ] }
   ]
 
   let [topic, setTopic] = useState(topics[0])

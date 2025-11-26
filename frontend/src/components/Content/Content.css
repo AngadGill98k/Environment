@@ -35,3 +35,64 @@
     /* Chrome, Safari, Opera */
     display: none;
 }
+/* Sidebar container */
+.content_list {
+  width: 300px;
+  background: #0c1a2b; /* dark theme */
+  padding: 10px 0;
+  border-right: 2px solid #1f2f45;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Heading */
+.content_list h3 {
+  color: #9cc9ff;
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid #1f2f45;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+/* Main topics */
+.content_list > ul > li > div {
+  color: #e7f1ff;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.content_list > ul > li > div:hover {
+  background: #112842;
+}
+
+/* Sub topics */
+.content_list ul ul {
+  padding-left: 30px;
+  margin-top: 5px;
+}
+
+.content_list ul ul li {
+  color: #b8d4ff;
+  cursor: pointer;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.content_list ul ul li:hover {
+  background: #1b3652;
+  color: white;
+}
+
+/* Highlight selected sub_topic */
+.content_list ul ul li:active,
+.content_list ul ul li:focus {
+  background: #2a4d78;
+  color: white;
+}
