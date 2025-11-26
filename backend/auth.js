@@ -4,6 +4,7 @@ import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import jwt from "jsonwebtoken";
 import User from "./models/User.js";
 import bcrypt from "bcrypt";
+import Admin from "./models/Admin.js";
 
 export const SECRET_KEY = 'your_jwt_secret_key';
 
@@ -11,7 +12,8 @@ const localstrat=new LocalStrategy({
   usernameField: 'mail',
   passwordField: 'pass'
 },async (mail, pass, done) => {
-  const user = await User.findOne({ mail });
+  let user = await User.findOne({ mail });
+  if(!user) user=await Admin.findOne({mail})
   if (!user) return done(null, false, { message: 'Incorrect username.' });
   const hashedpass=await bcrypt.compare(pass,user.pass);
   if (!hashedpass) return done(null, false, { message: 'Incorrect password.' });

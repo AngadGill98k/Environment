@@ -84,7 +84,7 @@ app.get('/get_moderators',passport.authenticate('jwt', { session: false }),get_m
 
 app.post('/add_moderator',passport.authenticate('jwt', { session: false }),add_moderator)
 
-app.get('/get_papers_to_verify',passport.authenticate('jwt', { session: false }),get_papers_to_verify)
+app.get('/get_papers_to_verify',get_papers_to_verify)
 
 app.post('/verify_paper',passport.authenticate('jwt', { session: false }),verify_paper)
 
@@ -94,7 +94,7 @@ app.post('/bookmark_paper',passport.authenticate('jwt', { session: false }),book
 
 app.get('/get_bookmarks',passport.authenticate('jwt', { session: false }),get_bookmarks)
 
-app.post('/paper_filler',passport.authenticate('jwt', { session: false }),paper_filler)
+app.post('/paper_filler',paper_filler)
 
 import {get_forums,search_for_forum_id,upvote_forum,downvote_forum,comment_forum} from "./controllers/forum.js"
 app.get('/get_forums',get_forums)

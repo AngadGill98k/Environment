@@ -50,6 +50,7 @@ export const verify_paper=async(req,res,next)=>{
         let userid=req.user.toString()
        
         let admin=await Admin.findById(userid)
+        admin=await User.findById(userid)
         console.log("admin id:",userid);
         if(!admin) return res.json({msg:false,message:"admin not found"})
         paper.verified_by=admin.name
