@@ -14,6 +14,7 @@ const Admin = () => {
   let [admins, setadmins] = useState([]);
   useEffect(() => {
     console.log(token);
+    if (!token) return;
     fetch('http://localhost:3001/get_papers_to_verify', {
       method: 'GET',
       credentials: 'include',
@@ -33,7 +34,7 @@ const Admin = () => {
 
 
     fetch('http://localhost:3001/get_bookmarks', {
-      method: 'GET',
+      method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +52,7 @@ const Admin = () => {
 
 
     fetch('http://localhost:3001/get_moderators', {
-      method: 'GET',
+      method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

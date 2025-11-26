@@ -80,11 +80,11 @@ app.get('/get_user',passport.authenticate('jwt', { session: false }),get_user)
 
 
 import {add_moderator,get_papers_to_verify,verify_paper,reject_paper, bookmark_paper,get_bookmarks,get_moderators,paper_filler} from "./controllers/admin.js"
-app.get('/get_moderators',passport.authenticate('jwt', { session: false }),get_moderators)
+app.post('/get_moderators',passport.authenticate('jwt', { session: false }),get_moderators)
 
 app.post('/add_moderator',passport.authenticate('jwt', { session: false }),add_moderator)
 
-app.get('/get_papers_to_verify',get_papers_to_verify)
+app.get('/get_papers_to_verify',passport.authenticate('jwt', { session: false }),get_papers_to_verify)
 
 app.post('/verify_paper',passport.authenticate('jwt', { session: false }),verify_paper)
 
@@ -92,7 +92,7 @@ app.post('/reject_paper',passport.authenticate('jwt', { session: false }),reject
 
 app.post('/bookmark_paper',passport.authenticate('jwt', { session: false }),bookmark_paper)
 
-app.get('/get_bookmarks',passport.authenticate('jwt', { session: false }),get_bookmarks)
+app.post('/get_bookmarks',passport.authenticate('jwt', { session: false }),get_bookmarks)
 
 app.post('/paper_filler',paper_filler)
 

@@ -50,13 +50,14 @@ export const verify_paper=async(req,res,next)=>{
         let userid=req.user.toString()
        
         let admin=await Admin.findById(userid)
-        admin=await User.findById(userid)
+        
         console.log("admin id:",userid);
         if(!admin) return res.json({msg:false,message:"admin not found"})
         paper.verified_by=admin.name
         await paper.save()
         await Request.deleteOne({_id:requestid})
-        
+        admin.research_paper.filter((id)=>id.toString()!==paperid)
+        await admin.save()
         res.json({msg:true,paper})
     }catch(e){
         res.json({msg:false,error:e.message,message:"error in verifying paper"})
@@ -86,7 +87,7 @@ export const bookmark_paper=async(req,res,next)=>{
         let paper=await Request.findById(paperid)
         if(!paper) return res.json({msg:false,message:"paper not found"})
         let userid=req.user
-        let user=await User.findById(userid)
+        let user=await Admin.findById(userid)
         if(!user) return res.json({msg:false,message:"user not found"})
         user.research_paper.push(paperid)
         await user.save()
@@ -99,9 +100,19 @@ export const bookmark_paper=async(req,res,next)=>{
 export const get_bookmarks =async(req,res,next)=>{
     try{
         let userid=req.user
-        let user=await User.findById(userid).populate("research_paper")
+        let user=await Admin.findById(userid)
+        let bookmarks=user.research_paper.map(async(paperid)=>{
+            
+            let paper=await Request.findById(paperid)
+
+            return paper
+        })
+        
+        bookmarks=await Promise.all(bookmarks)
+        console.log(bookmarks)
+        bookmarks=bookmarks.filter(paper=>paper!==null && paper!==undefined)
         if(!user) return res.json({msg:false,message:"user not found"})
-        res.json({msg:true,bookmarks:user.research_paper})
+        res.json({msg:true,bookmarks})
     }catch(e){
         res.json({msg:false,error:e.message,message:"error in getting bookmarks"})
     }

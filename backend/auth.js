@@ -37,7 +37,8 @@ const opts = {
   secretOrKey: SECRET_KEY,
 };
 const Jwtstart=new JwtStrategy(opts, async(jwt_payload, done) => {
-  const user = await User.findById(jwt_payload.id);
+  let user = await User.findById(jwt_payload.id);
+  if(!user) user=await Admin.findById(jwt_payload.id)
   if (user) {
     return done(null, user._id);
   } else {

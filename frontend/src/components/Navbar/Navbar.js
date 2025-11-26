@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './nav.css'
-const Navbar = () => {
+const Navbar = ({token}) => {
     let navigate=useNavigate()
     return (
         <>
@@ -38,7 +38,7 @@ const Navbar = () => {
 
   <button
     onClick={() => {
-      navigate("/admin");
+      navigate("/admin",{state:{token}});
     }}
     style={{
       padding: "10px 20px",

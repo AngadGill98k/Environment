@@ -44,7 +44,7 @@ function App() {
   return (
     <>
       <div className="nav_con">
-        <Navbar />
+        <Navbar token={token}/>
       </div>
 
       <div className='header'>
