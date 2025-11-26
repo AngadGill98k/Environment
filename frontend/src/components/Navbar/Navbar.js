@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import './nav.css'
-const Navbar = ({token}) => {
+import { useSelector } from 'react-redux'
+const Navbar = ({}) => {
     let navigate=useNavigate()
+    let [admin,setadmin]=React.useState(false)
+    let token =useSelector((state)=>state.token);
+    useEffect(()=>{
+      fetch('http://localhost:3001/get_user',{
+        method:'GET',
+        credentials:'include',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':`Bearer ${token}`
+        }
+      }).then(res=>res.json())
+      .then(data=>{
+        console.log(data);
+        if(data.msg==true){
+          setadmin(false)
+        }else setadmin(true)    
+      })
+      .catch(err=>console.error(err));
+    },[])
     return (
         <>
             <div style={{height:"100%",width:"20%"}} onClick={()=>{navigate("/home")}}>
@@ -35,8 +56,8 @@ const Navbar = ({token}) => {
   >
     Forums
   </button>
-
-  <button
+    {admin&&(
+      <button
     onClick={() => {
       navigate("/admin",{state:{token}});
     }}
@@ -60,6 +81,8 @@ const Navbar = ({token}) => {
     Admin
   </button>
 
+    )}
+  
   <button
     onClick={() => {
       navigate("/user");
